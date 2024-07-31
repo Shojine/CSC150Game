@@ -20,7 +20,7 @@ void Particle::Draw(Renderer& renderer)
 {
 	if (lifespan > 0) {
 		renderer.SetColor(rand() % 255,rand() % 255, rand() % 255, rand() % 255);
-		renderer.DrawRect(position.x, position.y, 4.0f, 4.0f);
+		//renderer.DrawRect(position.x, position.y, 4, 4);
 		//renderer.DrawPoint(position.x, position.y);
 	}
 	

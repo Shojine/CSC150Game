@@ -1,30 +1,32 @@
-#include"Engine.h"
+#include "Engine.h"
 
-#include<iostream>
-#include<cstdlib>
+#include <iostream>
+#include <cstdlib>
 #include <vector>
-
-
-
+#include <cassert>
 
 int main(int argc, char* argv[])
 {
-	g_engine.Initialize();
+	std::unique_ptr<Engine> engine = std::make_unique<Engine>();
 
-	while (!g_engine.IsQuit())
+	engine->Initialize();
+
+	File::SetFilePath("Assets");
+
+	std::cout << File::GetFilePath() << std::endl;
+
+
+	while (!engine->IsQuit())
 	{
-		g_engine.Update();
+		engine->Update();
 		
-		g_engine.GetRenderer().SetColor(0, 0, 0, 0);
-		g_engine.GetRenderer().BeginFrame();
+		engine->GetRenderer().SetColor(0, 0, 0, 0);
+		engine->GetRenderer().BeginFrame();
 
-		
-		g_engine.GetPS().Draw(g_engine.GetRenderer());
-
-		g_engine.GetRenderer().EndFrame();
+		engine->GetRenderer().EndFrame();
 
 	}
-	g_engine.Shutdown();
+	engine->Shutdown();
 
 	return 0;
 }

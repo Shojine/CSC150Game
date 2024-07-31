@@ -1,16 +1,34 @@
 #pragma once
-#include "Renderer.h"
-#include "Vector2.h"
-#include "Input.h"
-#include "Particle.h"
-#include "Random.h"
-#include "E_Timer.h"
-#include "MathUtils.h"
-#include "Model.h"
-#include "Transform.h"
-#include "Audio.h"
-#include "time.h"
-#include "particleSystem.h"
+
+
+// **Core**
+#include "Core/E_Timer.h"
+#include "Core/EAssert.h"
+#include "Core/EFile.h"
+
+// **Systems**
+// Renderer
+#include "Renderer/Renderer.h"
+#include "Renderer/ParticleSystem.h"
+#include "Renderer/Particle.h"
+#include "Renderer/Text.h"
+#include "Renderer/Font.h"
+#include "Renderer/Model.h"
+#include "Renderer/Color.h"
+// Input
+#include "Input/Input.h"
+// Audio
+#include "Audio/Audio.h"
+// **Math**
+#include "Math/Vector2.h"
+#include "Math/Random.h"
+#include "Math/MathUtils.h"
+#include "Math/Transform.h"
+// **Framework** 
+#include "Framework/Actor.h"
+#include "Framework/Scene.h"
+#include "Framework/Game.h"
+
 
 
 #include <SDL.h>
@@ -50,4 +68,4 @@ private:
 };
 
 
-extern Engine g_engine;
+

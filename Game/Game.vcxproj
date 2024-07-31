@@ -162,7 +162,7 @@
     <ClCompile Include="Source\Main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\CSC196\Projects\CSC196-GameEngine\Engine\Engine.vcxproj">
+    <ProjectReference Include="..\Engine\Engine.vcxproj">
       <Project>{7d8f0b53-5558-4e5e-94f5-1697b177b813}</Project>
     </ProjectReference>
   </ItemGroup>
