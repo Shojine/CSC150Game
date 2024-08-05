@@ -31,6 +31,9 @@
     <Filter Include="Source\Math">
       <UniqueIdentifier>{b944ee0e-90c5-42a9-932c-f833e865e680}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Recources">
+      <UniqueIdentifier>{7f28dbd1-9d26-4e6f-9f83-a12f48d27721}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Engine.cpp">
@@ -75,6 +78,9 @@
     <ClCompile Include="Source\Renderer\Model.cpp">
       <Filter>Source\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Renderer\Texture.cpp">
+      <Filter>Source\Renderer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Core\EAssert.h">
@@ -113,9 +119,6 @@
     <ClInclude Include="Source\Math\Random.h">
       <Filter>Source\Math</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Engine.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Renderer\Particle.h">
       <Filter>Source\Renderer</Filter>
     </ClInclude>
@@ -136,6 +139,21 @@
     </ClInclude>
     <ClInclude Include="Source\Renderer\Model.h">
       <Filter>Source\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Renderer\Texture.h">
+      <Filter>Source\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Recources\Resource.h">
+      <Filter>Source\Recources</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Recources\RecourceManager.h">
+      <Filter>Source\Recources</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\Singleton.h">
+      <Filter>Source\Core</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

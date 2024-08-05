@@ -29,6 +29,10 @@
 #include "Framework/Scene.h"
 #include "Framework/Game.h"
 
+// **Recources**
+#include "Recources/Resource.h"
+#include "Recources/RecourceManager.h"
+
 
 
 #include <SDL.h>
