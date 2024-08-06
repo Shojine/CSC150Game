@@ -3,11 +3,11 @@
 #include "../Math/Vector2.h"
 #include "../Recources/Resource.h"
 #include<string>
-#include<SDL_image.h>
+
 
 class Renderer;
 
-class Texture : Resource
+class Texture : public Resource
 {
 public:
 	Texture() = default;

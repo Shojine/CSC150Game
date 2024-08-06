@@ -33,6 +33,9 @@
 #include "Recources/Resource.h"
 #include "Recources/RecourceManager.h"
 
+// **Components**
+#include "Components/TextureComponent.h"
+
 
 
 #include <SDL.h>

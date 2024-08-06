@@ -53,5 +53,5 @@ bool Texture::Create(std::string name, ...)
     Renderer renderer = va_arg(args, Renderer);
     va_end(args);
 
-    return Load(name,renderer);
+    return Load(name, renderer);
 }

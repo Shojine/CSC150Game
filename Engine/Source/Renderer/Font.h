@@ -3,7 +3,7 @@
 #include<SDL_ttf.h>
 #include <string>
 
-class Font : Resource
+class Font : public Resource
 {
 public: 
 	Font() = default;
