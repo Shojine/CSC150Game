@@ -1,0 +1,8 @@
+{
+  "name": "Trinten",
+  "age": 19,
+  "speed": 20.3,
+  "IsDed": true,
+  "position": [6, 21],
+  "color": [1, 1, 0, 1]
+}

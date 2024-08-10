@@ -2,7 +2,6 @@
 #include "Object.h"
 #include "../Math/Transform.h"
 #include "Components/Component.h"
-#include "Renderer/Model.h"
 #include <string>
 #include <vector>
 #include <memory>
@@ -10,13 +9,15 @@
 
 class Renderer;
 class Scene;
-class Model;
+
 
 class Actor : public Object
 {
 public:
 	Actor() = default;
 	Actor(const Transform& transform) : m_transform{ transform } {}
+
+	CLASS_DECLARATION(Actor);
 	
 	virtual void Update(float dt);
 	virtual void Draw(Renderer& renderer);
@@ -31,11 +32,12 @@ public:
 	const std::string& GetTag() { return m_tag; }
 
 	const Transform& GetTransform() { return m_transform; }
+	void SetTrasnform(const Transform& transform) { m_transform = transform; }
 
 
 	
 	virtual void OnCollision(Actor* actor) {};
-	float GetRadius() { return (m_model) ? m_model->GetRadius() * m_transform.scale : 0; }
+	float GetRadius() { return 0; }
 	
 
 	friend class Scene;
@@ -45,7 +47,6 @@ protected:
 	bool m_destroyed = false;
 	float m_lifespan = 0;
 
-	Model* m_model;
 	Transform m_transform;
 	Vector2 m_velocity{ 0,0 };
 	float m_damping{ 0 };
