@@ -1,0 +1,50 @@
+{
+  "actors": [
+    {
+      "name": "player",
+      "m_transform": {
+        "position": [ 60, 60 ],
+        "rotation": 0,
+        "scale": 1
+      },
+      "m_components": [
+        {
+          "type": "TextureComponent",
+          "textureName": "Textures/player.png"
+        },
+        {
+          "type": "EnginePhysicsComponent",
+          "velcoity": [ 0, 0 ],
+          "damping": 0.2
+
+        },
+        {
+          "type": "PlayerComponent",
+          "speed": 100
+        },
+        {
+          "type": "CircleCollissionComponent",
+          "radius": 24
+        }
+      ]
+    },
+    {
+      "name": "enemy",
+      "m_transform": {
+        "position": [ 160, 160 ],
+        "rotation": 90,
+        "scale": 2
+      },
+      "m_components": [
+        {
+          "type": "TextureCompnent",
+          "textureName": "Textures/enemy.png"
+        },
+        {
+          "type": "CircleCollissionComponent",
+          "radius":  24
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+id pools
+body ids: 128
+solver set ids: 128
+joint ids: 128
+contact ids: 288
+island ids: 2184
+shape ids: 128
+chain ids: 128
+
+world arrays
+bodies: 35728
+solver sets: 704
+joints: 1280
+contacts: 93092
+islands: 25424
+shapes: 103936
+chains: 128
+
+broad-phase
+static tree: 840
+kinematic tree: 840
+dynamic tree: 63096
+moveSet: 16384 (1, 1024)
+moveArray: 1624
+pairSet: 65536 (1140, 4096)
+
+solver sets
+body sim: 100116
+body state: 16384
+joint sim: 0
+contact sim: 387240
+island sim: 2176
+
+constraint graph
+body bit sets: 592
+joint sim: 8256
+contact sim: 212352
+
+stack allocator: 235200
+

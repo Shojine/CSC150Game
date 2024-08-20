@@ -4,8 +4,8 @@
 #include <SDL_ttf.h>
 #include <SDL_image.h>
 #include <string>
+#include <memory>
 
-class Texture;
 
 class Renderer
 {
@@ -26,7 +26,8 @@ public:
 	void DrawPoint(float x, float y);
 	void DrawRect(int x, int y,int w, int h);
 	void DeawRact(float x, float y, float w, float h);
-	void DrawTexture(Texture* texture, float x, float y, float angle = 0.0f);
+	void DrawTexture(std::weak_ptr<class Texture> texture, float x, float y, float angle = 0.0f);
+	void DrawTexture(std::weak_ptr<class Texture> texture, const struct Transform& transform, bool hflip = false);
 
 	int GetWidth() const { return m_width; }
 	int GetHeight() const { return m_height; }

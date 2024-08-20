@@ -6,11 +6,13 @@
 
 
 class Renderer;
+struct SDL_Texture;
 
 class Texture : public Resource
 {
 public:
 	Texture() = default;
+	Texture(SDL_Texture* texture) : m_texture{ texture } {}
 	~Texture();
 	
 	// Inherited via Recource
@@ -23,7 +25,5 @@ public:
 
 private:
 	struct SDL_Texture* m_texture{ nullptr };
-
-
 
 };

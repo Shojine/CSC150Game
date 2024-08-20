@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 #include <memory>
+#include <functional>
 
 
 class Renderer;
@@ -19,43 +20,58 @@ public:
 
 	CLASS_DECLARATION(Actor);
 	
+	 void Initialize() override;
 	virtual void Update(float dt);
 	virtual void Draw(Renderer& renderer);
 
+	std::function<void(Actor*)> OnCollisionEnter;
+
 	void AddComponent(std::unique_ptr<Component> component);
 
+	template<typename T>
+	T* GetComponent();
 
-	void SetDamping(float damping) { m_damping = damping; }
-	void SetLifeSpan(float lifespan) { m_lifespan = lifespan; }
-	void SetTag(const std::string& tag) { m_tag = tag; }
-	
-	const std::string& GetTag() { return m_tag; }
-
-	const Transform& GetTransform() { return m_transform; }
-	void SetTrasnform(const Transform& transform) { m_transform = transform; }
-
+	template<typename T>
+	std::vector<T*> GetComponents();
 
 	
-	virtual void OnCollision(Actor* actor) {};
-	float GetRadius() { return 0; }
-	
 
+	
 	friend class Scene;
 
-protected:
-	std::string m_tag;
+public:
+	std::string tag;
+	float lifespan = 0;
 	bool m_destroyed = false;
-	float m_lifespan = 0;
-
 	Transform m_transform;
-	Vector2 m_velocity{ 0,0 };
-	float m_damping{ 0 };
+	Scene* m_scene{ nullptr };
+protected:
 
-	
-	 Scene* m_scene{ nullptr };
+	std::vector<std::unique_ptr<Component>> m_components;
 
-	 std::vector<std::unique_ptr<Component>> m_components;
-
-	 // Inherited via Object
-	 void Initialize() override;
 };
+
+template<typename T>
+inline T* Actor::GetComponent()
+{
+	for (auto& component : m_components)
+	{
+		T* result = dynamic_cast<T*>(component.get());
+		if (result) return result;
+	}
+
+	return nullptr;
+}
+
+template<typename T>
+inline std::vector<T*> Actor::GetComponents()
+{
+	std::vector<T*> components;
+	for (auto& component : m_components)
+	{
+		T* result = dynamic_cast<T*>(component.get());
+		if (result) components.push_back(result);
+	}
+
+	return components;
+}

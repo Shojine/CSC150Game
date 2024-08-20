@@ -1,15 +1,31 @@
 #pragma once
 #include<string>
+#include "Core/Serializable.h"
 
-#define CLASS_DECLARATION(class) \
-	static const char* GetTypename() { return #class; }
+#define CLASS_DECLARATION(classname) \
+	static const char* GetTypename() { return #classname; } \
+	virtual void Read(const json_t& value); \
+	virtual void Write(json_t& value);
 
-class Object 
+#define FACTORY_REGISTER(classname) \
+	class Register##classname													\
+{																	\
+	public:															\
+	Register##classname()														\
+	{																\
+		Factory::Instance().Register<classname>(#classname);		\
+	}																\
+}; \
+	static Register##classname register_instance;
+
+class Object : public Serializable
 {
 public:
 	Object() = default;
 	Object(const std::string& name) : m_name{ name } {}
 	virtual ~Object() = default;
+
+	CLASS_DECLARATION(Object)
 
 	virtual void Initialize() = 0;
 	virtual void Activate()   { active = true;  }
@@ -17,5 +33,5 @@ public:
 
 public:
 	std::string m_name;
-	bool active{ false };
+	bool active{ true };
 };

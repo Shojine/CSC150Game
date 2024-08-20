@@ -8,6 +8,7 @@
 #include "Core/Json.h"
 #include "Core/Singleton.h"
 #include "Core/Factory.h"
+#include "Core/EString.h"
 
 // **Systems**
 // Renderer
@@ -38,6 +39,8 @@
 
 // **Components**
 #include "Components/TextureComponent.h"
+#include "Components/EnginePhysicsComponent.h"
+#include "Components/TextCompontent.h"
 
 
 
