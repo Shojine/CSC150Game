@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Audio\Audio.h" />
+    <ClInclude Include="Source\Components\Box2DPhysicsComponent.h" />
     <ClInclude Include="Source\Components\CircleCollissionComponent.h" />
     <ClInclude Include="Source\Components\CollissionComponent.h" />
     <ClInclude Include="Source\Components\Component.h" />
@@ -27,6 +28,7 @@
     <ClInclude Include="Source\Components\PhysicsComponent.h" />
     <ClInclude Include="Source\Components\RenderComponent.h" />
     <ClInclude Include="Source\Components\TextCompontent.h" />
+    <ClInclude Include="Source\Components\TextureAnimationComponent.h" />
     <ClInclude Include="Source\Components\TextureComponent.h" />
     <ClInclude Include="Source\Core\EString.h" />
     <ClInclude Include="Source\Core\EAssert.h" />
@@ -37,6 +39,9 @@
     <ClInclude Include="Source\Core\Serializable.h" />
     <ClInclude Include="Source\Core\Singleton.h" />
     <ClInclude Include="Source\Engine.h" />
+    <ClInclude Include="Source\Event\Event.h" />
+    <ClInclude Include="Source\Event\EventSystem.h" />
+    <ClInclude Include="Source\Event\Observer.h" />
     <ClInclude Include="Source\Framework\Actor.h" />
     <ClInclude Include="Source\Framework\Game.h" />
     <ClInclude Include="Source\Framework\Object.h" />
@@ -44,9 +49,11 @@
     <ClInclude Include="Source\Input\Input.h" />
     <ClInclude Include="Source\Math\MathUtils.h" />
     <ClInclude Include="Source\Math\Random.h" />
+    <ClInclude Include="Source\Math\Rect.h" />
     <ClInclude Include="Source\Math\Transform.h" />
     <ClInclude Include="Source\Math\Vector2.h" />
     <ClInclude Include="Source\Physics\Physics.h" />
+    <ClInclude Include="Source\Physics\RigidBody.h" />
     <ClInclude Include="Source\Recources\Resource.h" />
     <ClInclude Include="Source\Recources\RecourceManager.h" />
     <ClInclude Include="Source\Renderer\Color.h" />
@@ -60,10 +67,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Audio\Audio.cpp" />
+    <ClCompile Include="Source\Components\Box2DPhysicsComponent.cpp" />
     <ClCompile Include="Source\Components\CircleCollissionComponent.cpp" />
     <ClCompile Include="Source\Components\EnginePhysicsComponent.cpp" />
     <ClCompile Include="Source\Components\PhysicsComponent.cpp" />
     <ClCompile Include="Source\Components\TextCompontent.cpp" />
+    <ClCompile Include="Source\Components\TextureAnimationComponent.cpp" />
     <ClCompile Include="Source\Components\TextureComponent.cpp" />
     <ClCompile Include="Source\Core\EAssert.cpp" />
     <ClCompile Include="Source\Core\EFile.cpp" />
@@ -71,12 +80,14 @@
     <ClCompile Include="Source\Core\E_Timer.cpp" />
     <ClCompile Include="Source\Core\Json.cpp" />
     <ClCompile Include="Source\Engine.cpp" />
+    <ClCompile Include="Source\Event\EventSystem.cpp" />
     <ClCompile Include="Source\Framework\Actor.cpp" />
     <ClCompile Include="Source\Framework\Object.cpp" />
     <ClCompile Include="Source\Framework\Scene.cpp" />
     <ClCompile Include="Source\Input\Input.cpp" />
     <ClCompile Include="Source\Math\Transform.cpp" />
     <ClCompile Include="Source\Physics\Physics.cpp" />
+    <ClCompile Include="Source\Physics\RigidBody.cpp" />
     <ClCompile Include="Source\Renderer\Font.cpp" />
     <ClCompile Include="Source\Renderer\Model.cpp" />
     <ClCompile Include="Source\Renderer\Particle.cpp" />
@@ -174,7 +185,7 @@
     </Link>
     <Lib>
       <AdditionalLibraryDirectories>$(SolutionDir)ThirdParty\SDL2\lib\$(PlatformTarget);$(SolutionDir)ThirdParty\fmod\core\lib\$(PlatformTarget);$(SolutionDir)ThirdParty\box2d-main\lib$(PlatformTarget)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>box2d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -199,7 +210,7 @@
     </Link>
     <Lib>
       <AdditionalLibraryDirectories>$(SolutionDir)ThirdParty\SDL2\lib\$(PlatformTarget);$(SolutionDir)ThirdParty\fmod\core\lib\$(PlatformTarget);$(SolutionDir)ThirdParty\box2d-main\lib$(PlatformTarget)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>box2d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -220,7 +231,7 @@
     </Link>
     <Lib>
       <AdditionalLibraryDirectories>$(SolutionDir)ThirdParty\SDL2\lib\$(PlatformTarget);$(SolutionDir)ThirdParty\fmod\core\lib\$(PlatformTarget);$(SolutionDir)ThirdParty\box2d-main\lib$(PlatformTarget)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>box2d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -245,7 +256,7 @@
     </Link>
     <Lib>
       <AdditionalLibraryDirectories>$(SolutionDir)ThirdParty\SDL2\lib\$(PlatformTarget);$(SolutionDir)ThirdParty\fmod\core\lib\$(PlatformTarget);$(SolutionDir)ThirdParty\box2d-main\lib$(PlatformTarget)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>box2d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

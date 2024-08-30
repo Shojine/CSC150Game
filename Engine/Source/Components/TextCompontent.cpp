@@ -5,9 +5,22 @@
 #include "Renderer/Renderer.h"
 #include "Framework/Actor.h"
 
+
+
+TextComponent::TextComponent(const TextComponent& other)
+{
+	text = other.text;
+	fontname = other.fontname;
+	fontSize = other.fontSize;
+	color = other.color;
+
+	textChanged = true;
+	
+	m_text = std::make_unique<Text>(*other.m_text.get());
+}
 void TextComponent::Initialize()
 {
-	if (!fontname.empty())
+	if (!m_text && !fontname.empty())
 	{
 		auto font = ResourceManager::Instance().Get<Font>(fontname, fontSize);
 		m_text = std::make_unique<Text>(font);
@@ -36,6 +49,7 @@ void TextComponent::SetText(const std::string& text)
 	textChanged = true;
 	}
 }
+
 
 void TextComponent::Read(const json_t& value)
 {

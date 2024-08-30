@@ -6,6 +6,23 @@
 
 FACTORY_REGISTER(Actor)
 
+Actor::Actor(const Actor& other)
+{
+	tag = other.tag;
+	lifespan = other.lifespan;
+	m_destroyed = other.m_destroyed;
+	persistent = other.persistent;
+
+	m_transform = other.m_transform;
+	m_scene = other.m_scene;
+
+	for (auto& component : other.m_components)
+	{
+		auto clone = std::unique_ptr<Component>(dynamic_cast<Component*>(component->Clone().release()));
+		AddComponent(std::move(clone));
+	}
+}
+
 void Actor::Update(float dt)
 {
 	if (lifespan != 0)
@@ -40,11 +57,21 @@ void Actor::Draw(Renderer& renderer)
 	}
 }
 
+//std::function<void(Actor*)> Actor::OnCollisionEnter(Actor* actor)
+//{
+//	return std::function<void(Actor*)>();
+//}
+
 void Actor::AddComponent(std::unique_ptr<Component> component)
 {
 	component->owner = this;
 	m_components.push_back(std::move(component));
 }
+
+//bool Actor::OnCollisionExit(Actor* actor)
+//{
+//	return true;
+//}
 
 void Actor::Initialize()
 {
@@ -69,12 +96,13 @@ void Actor::Read(const json_t& value)
 		for (auto& componentValue : GET_DATA(value, m_components).GetArray())
 		{
 			std::string type;
+
 			READ_DATA(componentValue, type);
 
 			auto component = Factory::Instance().Create<Component>(type);
 			if (!component)
 			{
-				std::cerr << "Could not create componetn: " << type << std::endl;
+				std::cerr << "Could not create component: " << type << std::endl;
 			}
 			component->Read(componentValue);
 

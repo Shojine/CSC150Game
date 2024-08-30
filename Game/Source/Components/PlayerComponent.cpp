@@ -18,14 +18,27 @@ void PlayerComponent::Update(float dt)
 	if (owner->m_scene->m_engine->GetInput().GetKeyDown(SDL_SCANCODE_S)) direction.y =  1;
 
 
-	owner->GetComponent<PhysicsComponent>()->ApplyFoce(direction * speed);
+	owner->GetComponent<PhysicsComponent>()->ApplyForce(direction * speed);
 	
+	if (owner->m_scene->m_engine->GetInput().GetKeyDown(SDL_SCANCODE_SPACE))
+	{
+		auto rocket = Factory::Instance().Create<Actor>("rocket");
+		owner->m_scene->AddActor(std::move(rocket),true);
+
+		rocket->m_transform.position = owner->m_transform.position;
+		rocket->m_transform.rotation = owner->m_transform.rotation;
+
+	}
 
 }
 
 void PlayerComponent::OnCollisionEnter(Actor* actor)
 {
 	std::cout << "player hit" << std::endl;
+
+	EVENT_NOTIFY(PlayerDead);
+	
+	
 }
 
 void PlayerComponent::Read(const json_t& value)

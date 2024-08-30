@@ -17,14 +17,17 @@ class Actor : public Object
 public:
 	Actor() = default;
 	Actor(const Transform& transform) : m_transform{ transform } {}
+	Actor(const Actor& other);
 
-	CLASS_DECLARATION(Actor);
+	CLASS_DECLARATION(Actor)
+	CLASS_PROTOTYPE(Actor)
 	
-	 void Initialize() override;
+	void Initialize() override;
 	virtual void Update(float dt);
 	virtual void Draw(Renderer& renderer);
 
 	std::function<void(Actor*)> OnCollisionEnter;
+	std::function<void(Actor*)> OnCollisionExit;
 
 	void AddComponent(std::unique_ptr<Component> component);
 
@@ -33,9 +36,6 @@ public:
 
 	template<typename T>
 	std::vector<T*> GetComponents();
-
-	
-
 	
 	friend class Scene;
 

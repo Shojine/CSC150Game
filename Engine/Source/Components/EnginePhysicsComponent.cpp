@@ -1,6 +1,7 @@
 #include "EnginePhysicsComponent.h"
 #include "Framework/Actor.h"
 #include "Core/Factory.h"
+#include "Core/EAssert.h"
 
 FACTORY_REGISTER(EnginePhysicsComponent)
 
@@ -17,7 +18,16 @@ void EnginePhysicsComponent::Update(float dt)
 	acceleration = Vector2{ 0,0 };
 }
 
-void EnginePhysicsComponent::ApplyFoce(const Vector2& force)
+
+
+void EnginePhysicsComponent::SetPosition(const Vector2& position)
+{
+	owner->m_transform.position = position;
+}
+
+
+
+void EnginePhysicsComponent::ApplyForce(const Vector2& force)
 {
 	assert(mass != 0);
 	//f = m * a
@@ -25,9 +35,8 @@ void EnginePhysicsComponent::ApplyFoce(const Vector2& force)
 	acceleration += force / mass;
 }
 
-void EnginePhysicsComponent::SetPosition(const Vector2& position)
+void EnginePhysicsComponent::ApplyTorque(float torque)
 {
-	owner->m_transform.position = position;
 }
 
 void EnginePhysicsComponent::Read(const json_t& value)

@@ -28,6 +28,15 @@
 #include "Math/Random.h"
 #include "Math/MathUtils.h"
 #include "Math/Transform.h"
+#include "Math/Rect.h"
+
+//**EventSystem*
+#include "Event/EventSystem.h"
+
+// **Physics**  
+#include "Physics/Physics.h"
+#include "Physics/RigidBody.h"
+
 // **Framework** 
 #include "Framework/Actor.h"
 #include "Framework/Scene.h"
@@ -41,7 +50,8 @@
 #include "Components/TextureComponent.h"
 #include "Components/EnginePhysicsComponent.h"
 #include "Components/TextCompontent.h"
-
+#include "Components/TextureAnimationComponent.h"
+#include "Components/Box2DPhysicsComponent.h"
 
 
 #include <SDL.h>
@@ -68,6 +78,10 @@ public:
 	
 	bool IsQuit() { return quit; }
 
+	Physics& GetPhysics() { return *m_physics; }
+
+	
+
 
 private:
 
@@ -78,6 +92,8 @@ private:
 	std::unique_ptr<Audio> m_audio;
 	std::unique_ptr<Time> m_time;
 	std::unique_ptr<ParticleSystem> m_particleSytem;
+	std::unique_ptr<Physics> m_physics;
+	std::unique_ptr<TextureAnimationComponent> m_textureanimation;
 };
 
 

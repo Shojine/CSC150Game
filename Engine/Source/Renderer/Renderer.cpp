@@ -112,7 +112,7 @@ void Renderer::DrawTexture(std::weak_ptr<Texture> texture, float x, float y, flo
 	Vector2 size = texture.lock()->GetSize();
 
 	SDL_FRect destRect;
-	destRect.x = x;
+	destRect.x = x ;
 	destRect.y = y;
 	destRect.w = size.x;
 	destRect.h = size.y;
@@ -125,13 +125,23 @@ void Renderer::DrawTexture(std::weak_ptr<Texture> texture, const Transform& tran
 	Vector2 size = texture.lock()->GetSize() * transform.scale;
 
 	SDL_FRect destRect;
-	destRect.x = transform.position.x;
-	destRect.y = transform.position.y;
+	destRect.x = transform.position.x - size.x * .05f;
+	destRect.y = transform.position.y - size.y * .05f;
 	destRect.w = size.x;
 	destRect.h = size.y;
 
-	
-
-
 	SDL_RenderCopyExF(m_renderer, texture.lock()->m_texture, NULL, &destRect, transform.rotation, NULL, (hflip) ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE);
+}
+
+void Renderer::DrawTexture(std::weak_ptr<class Texture> texture, const Transform& transform, const Rect& srcRect, bool hflip)
+{
+	Vector2 size = Vector2{ srcRect.w,srcRect.h } * transform.scale;
+
+	SDL_FRect destRect;
+	destRect.x = transform.position.x - size.x * .05f;
+	destRect.y = transform.position.y - size.y * .05f;
+	destRect.w = size.x;
+	destRect.h = size.y;
+
+	SDL_RenderCopyExF(m_renderer, texture.lock()->m_texture,(SDL_Rect*)&srcRect, &destRect, transform.rotation, NULL, (hflip) ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE);
 }

@@ -13,11 +13,15 @@ bool Engine::Initialize()
 	m_audio = std::make_unique<Audio>();
 	m_time = std::make_unique<Time>();
 	m_particleSytem = std::make_unique<ParticleSystem>();
+	m_physics = std::make_unique<Physics>();
+	//m_textureanimation = std::make_unique <TextureAnimationComponent>();
+	
 
 	m_renderer->Initialize();
 	m_renderer->CreateWindow("Game Engine", 800, 600);
 	m_input->Initialize();
 	m_audio->Initialize();
+	m_physics->Initialize();
 
 	FMOD::System* audio;
 	FMOD::System_Create(&audio);
@@ -35,6 +39,7 @@ void Engine::Shutdown()
 	m_renderer->ShutDown();
 	m_input->ShutDown();
 	m_audio->ShutDown();
+	m_physics->Shutdown();
 
 	_CrtMemDumpAllObjectsSince(NULL);
 }
@@ -59,5 +64,7 @@ void Engine::Update()
 	m_input->Update();
 	m_audio->Update();
 	m_particleSytem->Update(m_time->GetDeltaTime());
+	m_physics->Update(m_time->GetDeltaTime());
+	//m_textureanimation->Update(m_time->GetDeltaTime());
 	
 }

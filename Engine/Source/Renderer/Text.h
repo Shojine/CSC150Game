@@ -9,7 +9,7 @@ class Text
 public:
 	Text() = default;
 	Text(res_t<Font> font) : m_font{ font } {}
-	~Text();
+	~Text() = default;
 
 	void SetFont(res_t<Font> font) { m_font = font; }
 

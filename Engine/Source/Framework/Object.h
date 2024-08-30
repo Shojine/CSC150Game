@@ -18,14 +18,24 @@
 }; \
 	static Register##classname register_instance;
 
+#define CLASS_PROTOTYPE(classname) \
+	virtual std::unique_ptr<Object> Clone() \
+	{											\
+		return std::make_unique<classname>(*this);									\
+	};								
+
+
 class Object : public Serializable
 {
 public:
 	Object() = default;
 	Object(const std::string& name) : m_name{ name } {}
 	virtual ~Object() = default;
+	virtual std::unique_ptr<Object> Clone() = 0;
+
 
 	CLASS_DECLARATION(Object)
+	//CLASS_PROTOTYPE(Object)
 
 	virtual void Initialize() = 0;
 	virtual void Activate()   { active = true;  }
@@ -34,4 +44,5 @@ public:
 public:
 	std::string m_name;
 	bool active{ true };
+	bool persistent{ true };
 };

@@ -1,5 +1,6 @@
 #pragma once
 #include "Texture.h"
+#include "Math/Rect.h"
 #include <SDL.h>
 #include <SDL_ttf.h>
 #include <SDL_image.h>
@@ -28,6 +29,7 @@ public:
 	void DeawRact(float x, float y, float w, float h);
 	void DrawTexture(std::weak_ptr<class Texture> texture, float x, float y, float angle = 0.0f);
 	void DrawTexture(std::weak_ptr<class Texture> texture, const struct Transform& transform, bool hflip = false);
+	void DrawTexture(std::weak_ptr<class Texture> texture, const struct Transform& transform, const Rect& srcRect, bool hflip = false);
 
 	int GetWidth() const { return m_width; }
 	int GetHeight() const { return m_height; }

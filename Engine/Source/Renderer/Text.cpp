@@ -16,7 +16,7 @@ bool Text::Create(Renderer& renderer, const std::string& text, const Color& colo
 	}
 
 	// create a texture from the surface, only textures can render to the renderer
-	SDL_Texture* m_texture = SDL_CreateTextureFromSurface(renderer.m_renderer, surface);
+	SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer.m_renderer, surface);
 	if (surface == nullptr)
 	{
 		SDL_FreeSurface(surface);
@@ -28,12 +28,12 @@ bool Text::Create(Renderer& renderer, const std::string& text, const Color& colo
 	// free the surface, no longer needed after creating the texture
 	SDL_FreeSurface(surface);
 
-	m_texture = std::make_shared<Texture>(this->m_texture);
+	m_texture = std::make_shared<Texture>(texture);
 
 	return true;
 }
 
 void Text::Draw(Renderer& renderer, int x, int y, float angle)
 {
-	renderer.DrawTexture(m_texture, x, y, angle);
+	renderer.DrawTexture(m_texture, (float)x, (float)y, angle);
 }

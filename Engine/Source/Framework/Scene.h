@@ -1,7 +1,7 @@
 #pragma once
 #include "Object.h"
 #include <list>
-#include< memory>
+#include <memory>
 
 class Renderer;
 class Actor;
@@ -15,14 +15,19 @@ public:
 		m_game{ game },
 		m_engine{engine}
 	{}
-	CLASS_DECLARATION(Scene);
+
+	Scene(const Scene& other);
+
+	CLASS_DECLARATION(Scene)
+	CLASS_PROTOTYPE(Scene)
+	
 	// Inherited via Object
 	void Initialize() override;
 	void Update(float dt);
 	void Draw(Renderer& renderer);
 
-	void AddActor(std::unique_ptr<Actor> actor);
-	void RemoveAll();
+	void AddActor(std::unique_ptr<Actor> actor,bool initialize = false);
+	void RemoveAll(bool force = false);
 
 	template<typename T> T* GetActor();
 	template<typename T> T* GetActor(const std::string& name);
@@ -55,7 +60,7 @@ inline T* Scene::GetActor(const std::string& name)
 	for (auto& actor : actors)
 	{
 		T* result = dynamic_cast<T*>(actor.get());
-		if (result && IsEquealIgnoreCase(result->name, name)) return result;
+		if (result && IsEqualIgnoreCase(result->m_name, name)) return result;
 	}
 	return nullptr;
 }

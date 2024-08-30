@@ -5,8 +5,13 @@ class TextComponent : public RenderComponent
 {
 
 public:
+	
+	TextComponent(const TextComponent& other);
+	TextComponent() = default;
+	
 
-	CLASS_DECLARATION(TextComponent)
+	CLASS_DECLARATION(TextComponent);
+	CLASS_PROTOTYPE(TextComponent);
 
 	// Inherited via RenderComponent
 	void Initialize() override;

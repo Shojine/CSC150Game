@@ -1,7 +1,7 @@
 {
   "actors": [
     {
-      "name": "player",
+      "m_name": "player",
       "m_transform": {
         "position": [ 60, 60 ],
         "rotation": 0,
@@ -29,7 +29,7 @@
       ]
     },
     {
-      "name": "enemy",
+      "m_name": "rocket",
       "m_transform": {
         "position": [ 160, 160 ],
         "rotation": 90,
@@ -37,14 +37,99 @@
       },
       "m_components": [
         {
-          "type": "TextureCompnent",
-          "textureName": "Textures/enemy.png"
+          "type": "TextureComponent",
+          "textureName": "Textures/rocket.png"
+        },
+        {
+          "type": "RocketComponent",
+          "speed": 100
+        },
+        {
+          "type": "EnginePhysicsComponent",
+          "velcoity": [ 0, 0 ],
+          "damping": 0.2
+
         },
         {
           "type": "CircleCollissionComponent",
-          "radius":  24
+          "radius": 24
         }
       ]
-    }
+    },
+    {
+
+      "m_name": "bat",
+
+      "m_transform": {
+
+        "position": [ 160, 160 ],
+
+        "rotation": 0,
+
+        "scale": 2
+
+      },
+
+      "m_components": [
+
+        {
+
+          "type": "TextureAnimationComponent",
+
+          "animationName": "idle",
+
+          "animations": [
+
+            {
+
+              "name": "idle",
+
+              "textureName": "Textures/bat.png",
+
+              "fps": 10,
+
+              "loop": true,
+
+              "numColumns": 4,
+
+              "numRows": 1,
+
+              "startFrame": 1,
+
+              "endFrame": 4
+
+            }
+
+          ]
+
+        },
+
+        {
+
+          "type": "Box2DPhysicsComponent",
+
+          "damping": 0.4,
+
+          "angularDamping": 0.85,
+
+          "gravityScale": 2,
+
+          "friction": 0.8,
+
+          "density": 3.0,
+
+          "constrainAngle": true,
+
+          "restitution": 0.1,
+
+          "shape": "circle",
+
+          "scale": [ 0.8, 0.8 ]
+
+        }
+
+      ]
+
+    } 
   ]
 }

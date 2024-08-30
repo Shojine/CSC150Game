@@ -30,30 +30,23 @@ int main(int argc, char* argv[])
 	std::unique_ptr<Scene> scene = std::make_unique<Scene>(engine.get());
 	scene->Read(document);
 	scene->Initialize();
-		
-		while (!engine->IsQuit())
-		{
-			//update
-			engine->Update();
-			scene->Update(engine->GetTime().GetDeltaTime());
-			
-			auto* actor = scene->GetActor<Actor>("text");
-			if (actor)
-			{
-				actor->m_transform.rotation += 90 * engine->GetTime().GetDeltaTime();
-			}
 
-			
+	while (!engine->IsQuit())
+	{
+		//update
+		engine->Update();
+		scene->Update(engine->GetTime().GetDeltaTime());
 
-			engine->GetRenderer().SetColor(0, 0, 0, 0);
-			engine->GetRenderer().BeginFrame();
 
-			//draw
-			scene->Draw(engine->GetRenderer());
+		engine->GetRenderer().SetColor(0, 0, 0, 0);
+		engine->GetRenderer().BeginFrame();
 
-			engine->GetRenderer().EndFrame();
+		//draw
+		scene->Draw(engine->GetRenderer());
 
-		}
+		engine->GetRenderer().EndFrame();
+
+	}
 
 	scene->RemoveAll();
 	ResourceManager::Instance().Clear();

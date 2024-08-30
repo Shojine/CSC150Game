@@ -1,5 +1,6 @@
 #pragma once
 #include "Math/Vector2.h"
+#include "Math/Rect.h"
 #include "Renderer/Color.h"
 #include <document.h>
 #include <string>
@@ -7,7 +8,7 @@
 
 #define READ_DATA(value, data) Json::Read(value, #data, data)
 #define READ_DATA_REQUIRED(value, data) Json::Read(value, #data, data, true)
-#define READ_DATA_NAME(value, name, data) Json::Read(vaue,name, data);
+#define READ_DATA_NAME(value, name, data) Json::Read(value,name, data);
 
 
 #define HAS_DATA(value, data) value.HasMember(#data)
@@ -22,6 +23,8 @@ namespace Json
 	bool Read(const rapidjson::Value& value, const std::string& name, Vector2& data, bool isRequired = false);
 	bool Read(const rapidjson::Value& value, const std::string& name, Color& data, bool isRequired = false);
 	bool Read(const rapidjson::Value& value, const std::string& name, std::string& data, bool isRequired = false);
+	bool Read(const rapidjson::Value& value, const std::string& name, Rect& data, bool isRequired = false);
+
 
 }
 

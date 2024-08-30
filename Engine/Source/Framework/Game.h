@@ -28,6 +28,5 @@ protected:
 
 
 	Engine* m_engine{ nullptr };
-	Scene* m_scene{ nullptr };
 
 };
