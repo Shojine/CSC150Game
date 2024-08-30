@@ -12,6 +12,7 @@ class Renderer;
 class Scene;
 
 
+
 class Actor : public Object
 {
 public:
@@ -38,6 +39,7 @@ public:
 	std::vector<T*> GetComponents();
 	
 	friend class Scene;
+	
 
 public:
 	std::string tag;

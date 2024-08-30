@@ -1,6 +1,20 @@
 {
   "actors": [
     {
+      "m_name": "background",
+      "m_transform": {
+        "position": [ 0, 0 ],
+        "rotation": 0,
+        "scale": 3
+      },
+      "m_components": [
+        {
+          "type": "TextureComponent",
+          "textureName": "Textures/Back2.png"
+        }
+      ]
+    },
+    {
       "m_name": "player",
       "m_transform": {
         "position": [ 60, 60 ],
@@ -56,6 +70,7 @@
         }
       ]
     },
+
     {
 
       "m_name": "bat",
@@ -130,6 +145,29 @@
 
       ]
 
-    } 
+    },
+    {
+      "m_name": "text",
+      "m_transform": {
+        "position": [ 60, 60 ],
+        "rotation": 0,
+        "scale": 1
+      },
+      "m_components": [
+        {
+          "type": "TextComponent",
+          "fontname": "Fonts/ArcadeClassic.ttf",
+          "text": "Hello World",
+          "fontSize": 32
+        }
+      ]
+    },
+    {
+      "type": "AudioComponent",
+      "soundName": "Audio/8-bit-loop-189494.mp3",
+      "playOnStart": true
+    }
+
+
   ]
 }

@@ -4,8 +4,9 @@
 #include "Renderer/Text.h"
 #include "Renderer/Renderer.h"
 #include "Framework/Actor.h"
+#include "Core/Factory.h"
 
-
+FACTORY_REGISTER(TextComponent)
 
 TextComponent::TextComponent(const TextComponent& other)
 {

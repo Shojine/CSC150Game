@@ -23,6 +23,8 @@
 #include "Input/Input.h"
 // Audio
 #include "Audio/Audio.h"
+#include "Audio/AudioClip.h"
+#include "Audio/AudioSource.h"
 // **Math**
 #include "Math/Vector2.h"
 #include "Math/Random.h"
